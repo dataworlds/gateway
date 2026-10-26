@@ -8,7 +8,7 @@ import (
 	"github.com/df-mc/go-nethernet/endpoint"
 )
 
-func Run(addr string) {
+func Run(addr string, allow func() (bool, string)) {
 	signal, err := endpoint.Serve(addr)
 	if err != nil {
 		log.Fatal(err)
@@ -28,11 +28,11 @@ func Run(addr string) {
 		if err != nil {
 			return
 		}
-		Dial(conn)
+		go handleConnection(conn)
 	}
 }
 
-func Dial(conn2 net.Conn) {
+func handleConnection(conn2 net.Conn) {
 	client := endpoint.NewClient()
 
 	conn, err := (nethernet.Dialer{
