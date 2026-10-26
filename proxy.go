@@ -9,7 +9,6 @@ import (
 
 type proxy struct {
 	ResourcesFolder string
-	Function        func()
 	Allow           func() (bool, string)
 }
 
@@ -22,6 +21,10 @@ func (proxy *proxy) RegisterProxy(addr string) {
 }
 
 func (proxy *proxy) RegisterCommand() {
+
+}
+
+func (proxy *proxy) Function() {
 
 }
 
