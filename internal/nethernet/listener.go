@@ -27,7 +27,9 @@ func Listen(addr string) {
 		if err != nil {
 			return
 		}
-
+		// allow
+		// getdefaultserver
+		// connectdefaultserver
 		_ = conn
 	}
 }

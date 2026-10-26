@@ -12,6 +12,8 @@ func main() {
 		return true, "nose"
 	}
 
+	proxy.RegisterDefaultServer("hub", ":19133")
+
 	// 	proxy.BeforeSpawn = func(p *player.Player) {
 	// 		fmt.Println("test")
 	// 	}

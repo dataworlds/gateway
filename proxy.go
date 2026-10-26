@@ -21,14 +21,6 @@ func (proxy *proxy) RegisterProxy(addr string) {
 
 }
 
-func (proxy *proxy) RegisterDefaultServer(name, addr string) {
-
-}
-
-func (proxy *proxy) RegisterServer(name, addr string) {
-
-}
-
 func (proxy *proxy) RegisterCommand() {
 
 }
@@ -45,6 +37,11 @@ func (proxy *proxy) Listen(addr string) {
 	nethernet.Listen(addr)
 	// conn, _ := nethernet.Listen(addr)
 	// conn.Context()
+
+	// 	remoteAddr := getServer()
+	//
+	// 	nethernet.Dial(remoteAddr)
+	fmt.Println("test")
 
 	if proxy.ResourcesFolder != "" {
 		fmt.Println("loading resourcespacks")
