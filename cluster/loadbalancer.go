@@ -1,4 +1,4 @@
-package server
+package cluster
 
 func LoadBalancer(balancerName string, addrs ...string) (name, addr string) {
 	//
