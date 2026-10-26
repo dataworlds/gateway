@@ -3,7 +3,7 @@ package gateway
 import (
 	"fmt"
 
-	"github.com/dataworlds/gateway/nethernet"
+	"github.com/dataworlds/gateway/internal/nethernet"
 	"github.com/dataworlds/gateway/player"
 )
 
@@ -42,8 +42,9 @@ func (proxy *proxy) OnSpawn(server string, p *player.Player) {
 }
 
 func (proxy *proxy) Listen(addr string) {
-	conn, _ := nethernet.Server()
-	conn.Context()
+	nethernet.Listen(addr)
+	// conn, _ := nethernet.Listen(addr)
+	// conn.Context()
 
 	if proxy.ResourcesFolder != "" {
 		fmt.Println("loading resourcespacks")
