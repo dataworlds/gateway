@@ -29,6 +29,10 @@ func (proxy *proxy) RegisterServer(name, addr string) {
 
 }
 
+func (proxy *proxy) RegisterCommand() {
+
+}
+
 func (proxy *proxy) BeforeSpawn(server string, p *player.Player) {
 
 }
@@ -46,6 +50,8 @@ func (proxy *proxy) Listen(addr string) {
 	}
 	if proxy.Allow != nil {
 		a, b := proxy.Allow()
+		_ = a
+		_ = b
 	}
 	// if proxy.BeforeSpawn != nil {
 	// 	proxy.BeforeSpawn(&player.Player{})
