@@ -3,7 +3,7 @@ package gateway
 import (
 	"fmt"
 
-	"github.com/dataworlds/gateway/internal/nethernet"
+	"github.com/dataworlds/gateway/internal/transport"
 	"github.com/dataworlds/gateway/player"
 )
 
@@ -34,7 +34,7 @@ func (proxy *proxy) OnSpawn(server string, p *player.Player) {
 }
 
 func (proxy *proxy) Listen(addr string) {
-	nethernet.Listen(addr)
+	transport.Run(addr)
 	// conn, _ := nethernet.Listen(addr)
 	// conn.Context()
 

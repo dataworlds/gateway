@@ -8,7 +8,7 @@ import (
 	"github.com/df-mc/go-nethernet/endpoint"
 )
 
-func Listen(addr string) {
+func Run(addr string) {
 	signal, err := endpoint.Serve(addr)
 	if err != nil {
 		log.Fatal(err)
