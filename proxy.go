@@ -12,12 +12,18 @@ type proxy struct {
 	ResourcesFolder string
 	Function        func()
 	Allow           func() (bool, string)
-	BeforeSpawn     func(p *player.Player)
-	OnSpawn         func(p *player.Player)
 }
 
 func New() *proxy {
 	return &proxy{}
+}
+
+func (proxy *proxy) BeforeSpawn(server string, p *player.Player) {
+
+}
+
+func (proxy *proxy) OnSpawn(server string, p *player.Player) {
+
 }
 
 func (proxy *proxy) Listen(addr string) {
@@ -30,12 +36,12 @@ func (proxy *proxy) Listen(addr string) {
 	if proxy.Allow != nil {
 		a, b := proxy.Allow()
 	}
-	if proxy.BeforeSpawn != nil {
-		proxy.BeforeSpawn(&player.Player{})
-	}
-	if proxy.OnSpawn != nil {
-		proxy.OnSpawn(&player.Player{})
-	}
+	// if proxy.BeforeSpawn != nil {
+	// 	proxy.BeforeSpawn(&player.Player{})
+	// }
+	// if proxy.OnSpawn != nil {
+	// 	proxy.OnSpawn(&player.Player{})
+	// }
 }
 
 // backend
