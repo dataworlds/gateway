@@ -1,60 +1,28 @@
 package nethernet
 
 import (
-	"errors"
-	"log/slog"
-	"net"
-	"net/http"
+	"log"
 
 	"github.com/df-mc/go-nethernet"
 	"github.com/df-mc/go-nethernet/endpoint"
 )
 
-func Dial() (*nethernet.Conn, error) {
-	server := endpoint.NewHandler()
+func Dial() {
+	client := endpoint.NewClient()
 
-	l, err := nethernet.ListenConfig{
-		AllowAnonymous:    true,
-		DisableTrickleICE: true,
-	}.Listen(server)
+	conn, err := (nethernet.Dialer{
+		DisableTrickleICE:       true,
+		AllowIdentitylessServer: true,
+	}).Dial("http://127.0.0.1:19132", client)
 	if err != nil {
-		return nil, err
+		log.Fatal(err)
 	}
+	defer conn.Close()
 
-	tcp, err := net.Listen("tcp", ":19132")
+	packet, err := conn.ReadPacket()
 	if err != nil {
-		_ = l.Close()
-		return nil, err
+		log.Printf("Conexión cerrada o error al leer: %v", err)
+		return
 	}
-
-	srv := &http.Server{
-		Addr:    ":19132",
-		Handler: server,
-	}
-
-	go func() {
-		if err := srv.Serve(tcp); err != nil &&
-			!errors.Is(err, net.ErrClosed) &&
-			!errors.Is(err, http.ErrServerClosed) {
-			slog.Error("HTTP server error", "error", err)
-		}
-	}()
-
-	slog.Info("listening on NetherNet", "address", tcp.Addr())
-
-	conn, err := l.Accept()
-	if err != nil {
-		_ = srv.Close()
-		_ = tcp.Close()
-		_ = l.Close()
-		return nil, err
-	}
-
-	slog.Info("connected",
-		"remoteAddr", conn.RemoteAddr(),
-		"localAddr", conn.LocalAddr(),
-		"latency", conn.(*nethernet.Conn).Latency(),
-	)
-	return conn.(*nethernet.Conn), nil
-
+	log.Printf("Recibí un paquete de %d bytes", len(packet))
 }
