@@ -17,15 +17,15 @@ func New() *proxy {
 	return &proxy{}
 }
 
-func (proxy *proxy) RegisterProxy() {
+func (proxy *proxy) RegisterProxy(addr string) {
 
 }
 
-func (proxy *proxy) RegisterDefaultServer() {
+func (proxy *proxy) RegisterDefaultServer(name, addr string) {
 
 }
 
-func (proxy *proxy) RegisterServer() {
+func (proxy *proxy) RegisterServer(name, addr string) {
 
 }
 
