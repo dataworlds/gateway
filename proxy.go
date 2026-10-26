@@ -3,6 +3,7 @@ package gateway
 import (
 	"fmt"
 
+	"github.com/dataworlds/gateway/cluster"
 	"github.com/dataworlds/gateway/nethernet"
 	"github.com/dataworlds/gateway/player"
 )
@@ -35,4 +36,12 @@ func (proxy *proxy) Listen(addr string) {
 	if proxy.OnSpawn != nil {
 		proxy.OnSpawn(&player.Player{})
 	}
+}
+
+// backend
+// proxy
+// cmd
+func (proxy *proxy) RegisterDefaultBackend() {
+	cluster.RegisterDefaultBackend()
+
 }
