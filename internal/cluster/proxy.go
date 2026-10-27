@@ -1,5 +1,5 @@
 package cluster
 
-func RegisterProxy(name, addr string) {
+func RegisterProxy(addr string) {
 
 }
