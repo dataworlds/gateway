@@ -6,6 +6,11 @@ import (
 	"strings"
 )
 
+type Server struct {
+	Name    string
+	Address string
+}
+
 func RegisterServer(name, addr string, makeDefault bool) error {
 	name, addr = strings.TrimSpace(name), strings.TrimSpace(addr)
 	if name == "" {
