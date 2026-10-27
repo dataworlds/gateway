@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/dataworlds/gateway"
+	"github.com/dataworlds/gateway/player"
 )
 
 func main() {
@@ -14,13 +15,8 @@ func main() {
 
 	proxy.RegisterDefaultServer("hub", ":19133")
 
-	// 	proxy.BeforeSpawn = func(p *player.Player) {
-	// 		fmt.Println("test")
-	// 	}
-	//
-	// 	proxy.OnSpawn = func(p *player.Player) {
-	// 		fmt.Println("test")
-	// 	}
+	proxy.OnSpawn("hub", func(p *player.Player) {
+	})
 
 	proxy.Listen(":19132")
 }
