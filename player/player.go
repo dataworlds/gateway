@@ -1,5 +1,7 @@
 package player
 
-type Player struct {
-	algo string
+type Player struct{}
+
+func (p *Player) Name() string {
+	return "insertname"
 }

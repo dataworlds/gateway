@@ -16,6 +16,7 @@ func main() {
 	proxy.RegisterDefaultServer("hub", ":19133")
 
 	proxy.OnSpawn("hub", func(p *player.Player) {
+		p.Name()
 	})
 
 	proxy.Listen(":19132")
