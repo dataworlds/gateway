@@ -36,11 +36,11 @@ func (proxy *proxy) Function(func()) {
 
 }
 
-func (proxy *proxy) BeforeSpawn(server string, p *player.Player) {
+func (proxy *proxy) BeforeSpawn(server string, function func(p *player.Player)) {
 
 }
 
-func (proxy *proxy) OnSpawn(server string, p *player.Player) {
+func (proxy *proxy) OnSpawn(server string, function func(p *player.Player)) {
 
 }
 
